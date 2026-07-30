@@ -1,12 +1,20 @@
 import google.generativeai as genai
 import os
+import streamlit as st
 from dotenv import load_dotenv
 
+# Load .env for local development
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# Get API key from Streamlit Secrets (Cloud) or .env (Local)
+API_KEY = st.secrets.get("GOOGLE_API_KEY") or os.getenv("GOOGLE_API_KEY")
 
-model = genai.GenerativeModel("gemini-flash-latest")
+if not API_KEY:
+    raise ValueError("GOOGLE_API_KEY not found.")
+
+genai.configure(api_key=API_KEY)
+
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 
 def ask_gemini(context, question):
