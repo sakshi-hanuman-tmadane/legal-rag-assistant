@@ -1,5 +1,5 @@
 from utils.search import search
-from utils.gemini_api import ask_gemini
+from utils.groq_api import ask_groq
 
 query = input("Ask your legal question: ")
 
@@ -18,7 +18,7 @@ print("Source:", best["source"])
 print("Page:", best["page"])
 print(best["text"])
 
-answer = ask_gemini(best["text"], query)
+answer = ask_groq(best["text"], query)
 
 print("\n" + "=" * 70)
 print("LEGAL ASSISTANT")

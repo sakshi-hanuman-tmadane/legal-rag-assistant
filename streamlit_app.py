@@ -8,7 +8,7 @@ import pickle
 from pathlib import Path
 from utils.chunking import chunk_documents
 from utils.embeddings import model
-from utils.gemini_api import ask_gemini
+from utils.groq_api import ask_groq
 # -----------------------------------
 # VECTOR DATABASE PATHS
 # -----------------------------------
@@ -226,8 +226,8 @@ if query:
                 for chunk in retrieved_chunks
             )
 
-            # Ask Gemini
-            answer = ask_gemini(
+            # Ask Groq
+            answer = ask_groq(
                 context=context,
                 question=query
             )
